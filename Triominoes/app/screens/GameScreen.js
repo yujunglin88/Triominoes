@@ -15,6 +15,7 @@ const point_rewards = {
     cleared: 25,
 };
 
+
 export default function GameScreen(props) {
     const [currentPlayer, setCurrentPlayer] = useState(0);
     const [drawedTiles, setDrawedTiles] = useState(0);
@@ -24,7 +25,6 @@ export default function GameScreen(props) {
         player_scores[currentPlayer] += points;
         setText(player_scores[currentPlayer]);
         setCurrentPlayer((currentPlayer + 1) % 2);
-        setDrawedTiles(0);
     };
     const handelPressDrawTile = () => {
         player_scores[currentPlayer] += point_deductions[drawedTiles];
@@ -50,10 +50,6 @@ export default function GameScreen(props) {
                     <Text style={styles.names}>{player_names[1]}</Text>
                     <Text style={styles.names}>{player_scores[1]}</Text>
                 </View>
-            </View>
-            <View style={styles.currentPlayerBox} backgroundColor={currentPlayer == 0 ? 'lightblue' : 'pink'}>
-                <Text style={styles.names}>Current Player</Text>
-                <Text style={styles.names}>{player_names[currentPlayer]}</Text>
             </View>
             <View style={styles.containerInput}>
                 <TouchableOpacity
@@ -90,9 +86,9 @@ const styles = StyleSheet.create({
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
     },
     containerDisplay: {
+        flex: 1,
         flexDirection: "row",
-        flexWrap: 'wrap',
-        backgroundColor: '#a0d',
+        backgroundColor: '#fff',
         alignItems: 'top',
         justifyContent: 'center',
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
@@ -121,13 +117,6 @@ const styles = StyleSheet.create({
         width: '50%',
         height: 100,
         backgroundColor: 'pink',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
-    },
-    currentPlayerBox: {
-        flex: 1,
-        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
